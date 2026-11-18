@@ -11,6 +11,7 @@ const Z_95 = 1.959963984540054;
  * @returns {number}
  */
 export function erf(x) {
+  if (x === 0) return 0;
   const sign = x < 0 ? -1 : 1;
   const ax = Math.abs(x);
   const t = 1 / (1 + 0.3275911 * ax);
@@ -38,6 +39,7 @@ export function normalCdf(z) {
 export function normalQuantile(p) {
   if (p <= 0) return -Infinity;
   if (p >= 1) return Infinity;
+  if (p === 0.5) return 0;
   const a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02,
     1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
   const b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02,

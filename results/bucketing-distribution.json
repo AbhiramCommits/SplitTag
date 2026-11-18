@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-11-18T23:34:10.356Z",
+  "visitors": 100000,
+  "experimentId": "distribution-check",
+  "tolerancePercentagePoints": 1.5,
+  "variants": [
+    {
+      "id": "control",
+      "configured": 0.5,
+      "observed": 0.49916,
+      "deltaPercentagePoints": -0.08400000000000074
+    },
+    {
+      "id": "urgency",
+      "configured": 0.3,
+      "observed": 0.30017,
+      "deltaPercentagePoints": 0.017000000000000348
+    },
+    {
+      "id": "social-proof",
+      "configured": 0.2,
+      "observed": 0.20067,
+      "deltaPercentagePoints": 0.06699999999999762
+    }
+  ]
+}
