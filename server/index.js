@@ -17,6 +17,7 @@ import {
   appendEvents,
   ValidationError
 } from './store.js';
+import { computeResults } from './stats.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -146,11 +147,12 @@ export function createApp() {
   });
 
   app.get('/api/results/:id', (req, res) => {
-    // Implemented in step 4.
-    if (!getExperiment(req.params.id)) {
+    const experiment = getExperiment(req.params.id);
+    if (!experiment) {
       return res.status(404).json({ error: `No experiment with id "${req.params.id}"` });
     }
-    return res.json({});
+    const events = listEvents({ experimentId: experiment.id });
+    return res.json(computeResults(experiment, events));
   });
 
   app.get('/api/events', (req, res) => {

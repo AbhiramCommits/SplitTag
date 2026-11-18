@@ -1,0 +1,34 @@
+SplitTag traffic simulation log
+Generated: 2026-11-18T23:18:40Z
+
+$ node tools/simulate.js --experiment exp-hero-cta --visitors 8000 --control-rate 0.082 --variant-rate 0.101 --seed 42
+
+SplitTag simulation — Hero CTA: urgency vs control (exp-hero-cta)
+server: http://localhost:4000   seed: 42   requested visitors: 8000
+goal: Primary CTA click (cta-click)
+
+Variant     Visitors   Conversions   Observed    Configured
+----------  ---------  -----------   ----------  ----------
+control          4017          327        8.14%       8.20%
+urgency          3983          430       10.80%      10.10%
+
+allocated: 8000/8000   events POSTed: 8757 in 9 batch(es)
+statistics: z=4.057  p=0.0000  lift=32.62%
+decision: SHIP — Urgency lifts conversion by 32.62% (8.14% → 10.80%, p<0.0001) on 4,017 control and 3,983 variant visitors, with the required 1,907 per arm reached — ship it.
+
+
+$ node tools/simulate.js --experiment exp-form-position --visitors 8000 --control-rate 0.112 --variant-rate 0.094 --seed 42
+
+SplitTag simulation — Lead form above benefits (exp-form-position)
+server: http://localhost:4000   seed: 42   requested visitors: 8000
+goal: Lead form submit (form-submit)
+
+Variant     Visitors   Conversions   Observed    Configured
+----------  ---------  -----------   ----------  ----------
+control          4043          454       11.23%      11.20%
+form-first       3957          353        8.92%       9.40%
+
+allocated: 8000/8000   events POSTed: 8807 in 9 batch(es)
+statistics: z=-3.428  p=0.0006  lift=-20.56%
+decision: NO-SHIP — Form first reduces conversion by 20.56% (11.23% → 8.92%, p=0.0006) on 4,043 control and 3,957 variant visitors — keep the control.
+

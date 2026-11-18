@@ -1,0 +1,281 @@
+[
+  {
+    "experiment": {
+      "id": "exp-hero-cta",
+      "name": "Hero CTA: urgency vs control",
+      "status": "running",
+      "targetUrlPattern": "/",
+      "trafficAllocation": 1
+    },
+    "generatedAt": "2026-11-18T23:18:52.963Z",
+    "variants": [
+      {
+        "id": "control",
+        "name": "Control",
+        "weight": 0.5,
+        "isControl": true,
+        "visitors": 4017,
+        "exposures": 4017,
+        "conversions": 327,
+        "conversionRate": 0.08140403286034353,
+        "rateCI95": [
+          0.07294769350850325,
+          0.08986037221218382
+        ],
+        "goals": [
+          {
+            "goalId": "cta-click",
+            "name": "Primary CTA click",
+            "type": "click",
+            "conversions": 327,
+            "conversionRate": 0.08140403286034353
+          }
+        ],
+        "lift": 0,
+        "liftCI95": [
+          0,
+          0
+        ],
+        "pValue": null,
+        "zScore": null,
+        "significant": false
+      },
+      {
+        "id": "urgency",
+        "name": "Urgency",
+        "weight": 0.5,
+        "isControl": false,
+        "visitors": 3983,
+        "exposures": 3983,
+        "conversions": 430,
+        "conversionRate": 0.10795882500627668,
+        "rateCI95": [
+          0.09832132341114044,
+          0.11759632660141292
+        ],
+        "goals": [
+          {
+            "goalId": "cta-click",
+            "name": "Primary CTA click",
+            "type": "click",
+            "conversions": 430,
+            "conversionRate": 0.10795882500627668
+          }
+        ],
+        "zScore": 4.057296876229848,
+        "pValue": 0.000049669254932327433,
+        "lift": 0.3262097860862797,
+        "liftCI95": [
+          0.16870518468094267,
+          0.48371438749161677
+        ],
+        "diffCI95": [
+          0.013733282397477781,
+          0.03937630189438852
+        ],
+        "significant": true
+      }
+    ],
+    "goals": [
+      {
+        "id": "cta-click",
+        "name": "Primary CTA click",
+        "type": "click",
+        "variants": [
+          {
+            "variantId": "control",
+            "conversions": 327,
+            "conversionRate": 0.08140403286034353,
+            "visitors": 4017
+          },
+          {
+            "variantId": "urgency",
+            "conversions": 430,
+            "conversionRate": 0.10795882500627668,
+            "visitors": 3983
+          }
+        ]
+      }
+    ],
+    "test": {
+      "zScore": 4.057296876229848,
+      "pValue": 0.000049669254932327433,
+      "lift": 0.3262097860862797,
+      "liftCI95": [
+        0.16870518468094267,
+        0.48371438749161677
+      ],
+      "diffCI95": [
+        0.013733282397477781,
+        0.03937630189438852
+      ],
+      "significant": true
+    },
+    "controlVariantId": "control",
+    "primaryVariantId": "urgency",
+    "totalVisitors": 8000,
+    "requiredSampleSize": 1907,
+    "minimumDetectableEffect": 0.026554792145933148,
+    "sampleProgress": 1,
+    "alpha": 0.05,
+    "power": 0.8,
+    "decision": "SHIP",
+    "reason": "Urgency lifts conversion by 32.62% (8.14% → 10.80%, p<0.0001) on 4,017 control and 3,983 variant visitors, with the required 1,907 per arm reached — ship it."
+  },
+  {
+    "experiment": {
+      "id": "exp-form-position",
+      "name": "Lead form above benefits",
+      "status": "running",
+      "targetUrlPattern": "/",
+      "trafficAllocation": 1
+    },
+    "generatedAt": "2026-11-18T23:18:52.981Z",
+    "variants": [
+      {
+        "id": "control",
+        "name": "Control",
+        "weight": 0.5,
+        "isControl": true,
+        "visitors": 4043,
+        "exposures": 4043,
+        "conversions": 454,
+        "conversionRate": 0.11229285184269107,
+        "rateCI95": [
+          0.10256073902837091,
+          0.12202496465701122
+        ],
+        "goals": [
+          {
+            "goalId": "form-submit",
+            "name": "Lead form submit",
+            "type": "form_submit",
+            "conversions": 454,
+            "conversionRate": 0.11229285184269107
+          },
+          {
+            "goalId": "scroll-75",
+            "name": "Read to 75%",
+            "type": "scroll_depth",
+            "conversions": 0,
+            "conversionRate": 0
+          }
+        ],
+        "lift": 0,
+        "liftCI95": [
+          0,
+          0
+        ],
+        "pValue": null,
+        "zScore": null,
+        "significant": false
+      },
+      {
+        "id": "form-first",
+        "name": "Form first",
+        "weight": 0.5,
+        "isControl": false,
+        "visitors": 3957,
+        "exposures": 3957,
+        "conversions": 353,
+        "conversionRate": 0.08920899671468284,
+        "rateCI95": [
+          0.08032765133211746,
+          0.09809034209724822
+        ],
+        "goals": [
+          {
+            "goalId": "form-submit",
+            "name": "Lead form submit",
+            "type": "form_submit",
+            "conversions": 353,
+            "conversionRate": 0.08920899671468284
+          },
+          {
+            "goalId": "scroll-75",
+            "name": "Read to 75%",
+            "type": "scroll_depth",
+            "conversions": 0,
+            "conversionRate": 0
+          }
+        ],
+        "zScore": -3.4276497038089926,
+        "pValue": 0.0006089296739433259,
+        "lift": -0.20556833982937725,
+        "liftCI95": [
+          -0.3228994383248747,
+          -0.08823724133387977
+        ],
+        "diffCI95": [
+          -0.03625929878790332,
+          -0.009908411468113137
+        ],
+        "significant": true
+      }
+    ],
+    "goals": [
+      {
+        "id": "form-submit",
+        "name": "Lead form submit",
+        "type": "form_submit",
+        "variants": [
+          {
+            "variantId": "control",
+            "conversions": 454,
+            "conversionRate": 0.11229285184269107,
+            "visitors": 4043
+          },
+          {
+            "variantId": "form-first",
+            "conversions": 353,
+            "conversionRate": 0.08920899671468284,
+            "visitors": 3957
+          }
+        ]
+      },
+      {
+        "id": "scroll-75",
+        "name": "Read to 75%",
+        "type": "scroll_depth",
+        "variants": [
+          {
+            "variantId": "control",
+            "conversions": 0,
+            "conversionRate": 0,
+            "visitors": 4043
+          },
+          {
+            "variantId": "form-first",
+            "conversions": 0,
+            "conversionRate": 0,
+            "visitors": 3957
+          }
+        ]
+      }
+    ],
+    "test": {
+      "zScore": -3.4276497038089926,
+      "pValue": 0.0006089296739433259,
+      "lift": -0.20556833982937725,
+      "liftCI95": [
+        -0.3228994383248747,
+        -0.08823724133387977
+      ],
+      "diffCI95": [
+        -0.03625929878790332,
+        -0.009908411468113137
+      ],
+      "significant": true
+    },
+    "controlVariantId": "control",
+    "primaryVariantId": "form-first",
+    "totalVisitors": 8000,
+    "requiredSampleSize": 3196,
+    "minimumDetectableEffect": 0.02308385512800823,
+    "sampleProgress": 1,
+    "alpha": 0.05,
+    "power": 0.8,
+    "decision": "NO-SHIP",
+    "reason": "Form first reduces conversion by 20.56% (11.23% → 8.92%, p=0.0006) on 4,043 control and 3,957 variant visitors — keep the control."
+  }
+]

@@ -3,13 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SplitTag — Results</title>
+  <title>SplitTag — Experiment Results</title>
   <link rel="stylesheet" href="/results.css">
 </head>
 <body>
-  <main>
-    <h1>SplitTag Results</h1>
-    <p>Results dashboard implemented in step 4.</p>
+  <a class="skip-link" href="#main">Skip to results</a>
+
+  <header class="results-header">
+    <div class="shell header-inner">
+      <div class="brand-group">
+        <a href="/" class="brand">SplitTag</a>
+        <span class="page-label">Results</span>
+      </div>
+      <nav aria-label="Views">
+        <a href="/">Demo page</a>
+        <a href="/editor.html">Visual editor</a>
+        <a href="/results.html" aria-current="page">Results</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <div class="page-head">
+      <div>
+        <p class="eyebrow">Experiment readout</p>
+        <h1>Results</h1>
+        <p class="lede">Per-visitor conversion rates, a two-proportion z-test, and an explicit ship call.</p>
+      </div>
+      <div class="picker-group">
+        <label for="experiment-picker">Experiment</label>
+        <select id="experiment-picker"></select>
+      </div>
+    </div>
+
+    <p id="status-message" class="status-message" role="status" aria-live="polite">Loading results…</p>
+
+    <section class="decision-card" id="decision-card" aria-labelledby="decision-heading" hidden>
+      <div class="decision-main">
+        <div class="decision-badge" id="decision-badge">KEEP RUNNING</div>
+        <div>
+          <h2 id="decision-heading">Decision</h2>
+          <p class="decision-reason" id="decision-reason"></p>
+        </div>
+      </div>
+      <dl class="stat-strip">
+        <div>
+          <dt>Control rate</dt>
+          <dd id="stat-control">—</dd>
+        </div>
+        <div>
+          <dt>Variant rate</dt>
+          <dd id="stat-variant">—</dd>
+        </div>
+        <div>
+          <dt>Relative lift</dt>
+          <dd id="stat-lift">—</dd>
+        </div>
+        <div>
+          <dt>p-value</dt>
+          <dd id="stat-p">—</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="panel" id="progress-panel" hidden aria-labelledby="progress-heading">
+      <div class="panel-head">
+        <h2 id="progress-heading">Sample-size progress</h2>
+        <span class="muted" id="progress-label"></span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-labelledby="progress-heading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <p class="muted small" id="progress-note"></p>
+    </section>
+
+    <section class="panel" id="chart-panel" hidden aria-labelledby="chart-heading">
+      <div class="panel-head">
+        <h2 id="chart-heading">Conversion rate by variant</h2>
+        <span class="legend"><span class="legend-bar" aria-hidden="true"></span> rate &nbsp; <span class="legend-whisker" aria-hidden="true"></span> 95% CI</span>
+      </div>
+      <div class="chart" id="chart" role="img" aria-label="Bar chart of conversion rates with confidence intervals"></div>
+    </section>
+
+    <section class="panel" id="table-panel" hidden aria-labelledby="table-heading">
+      <div class="panel-head">
+        <h2 id="table-heading">Variant comparison</h2>
+        <span class="muted small" id="visitor-total"></span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <caption class="sr-only">Visitors, conversions, conversion rate, lift, confidence interval, and p-value for each variant.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Variant</th>
+              <th scope="col" class="num">Visitors</th>
+              <th scope="col" class="num">Conversions</th>
+              <th scope="col" class="num">Conv. rate</th>
+              <th scope="col" class="num">Lift vs control</th>
+              <th scope="col" class="num">95% CI (lift)</th>
+              <th scope="col" class="num">p-value</th>
+            </tr>
+          </thead>
+          <tbody id="variant-rows"></tbody>
+        </table>
+      </div>
+      <p class="muted small methodology">
+        Conversion rate is unique converting visitors divided by unique exposed visitors. The z-test uses a pooled
+        standard error and a two-tailed p-value; the lift interval uses an unpooled standard error. A visitor who
+        converts more than once counts once.
+      </p>
+    </section>
+
+    <section class="panel" id="goals-panel" hidden aria-labelledby="goals-heading">
+      <div class="panel-head">
+        <h2 id="goals-heading">Goals</h2>
+        <span class="muted small">Unique converting visitors per goal</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <caption class="sr-only">Per-goal conversion counts per variant.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Goal</th>
+              <th scope="col">Type</th>
+              <th scope="col" class="num">Control</th>
+              <th scope="col" class="num">Variant</th>
+            </tr>
+          </thead>
+          <tbody id="goal-rows"></tbody>
+        </table>
+      </div>
+    </section>
   </main>
+
+  <footer class="results-footer">
+    <div class="shell">
+      <p>SplitTag runs locally. Numbers come from <code>data/events.json</code>; the statistical engine is <code>server/stats.js</code>.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/results.js"></script>
 </body>
 </html>
