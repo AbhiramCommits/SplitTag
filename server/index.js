@@ -162,6 +162,14 @@ export function createApp() {
     res.json(listEvents(filter));
   });
 
+  // The canonical bucketing implementation is shared with the snippet and the
+  // Node traffic simulator.
+  app.use('/shared', express.static(path.join(ROOT, 'shared'), {
+    setHeaders(res) {
+      res.setHeader('Cache-Control', 'no-store, max-age=0');
+    }
+  }));
+
   app.use(express.static(PUBLIC_DIR, {
     etag: true,
     setHeaders(res, filePath) {
