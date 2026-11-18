@@ -43,7 +43,7 @@
           <input id="selector-input" type="text" placeholder="Click an element or type a CSS selector" autocomplete="off" spellcheck="false">
           <button type="button" class="btn btn-small" id="selector-go">Select</button>
         </div>
-        <p class="selection-hint" id="selection-hint">Click any element in the preview to select it. Enter/Space works when an element is focused.</p>
+        <p class="selection-hint" id="selection-hint" role="status" aria-live="polite">Click any element in the preview to select it. Keyboard: Tab into the preview, focus an element, then press Enter or Space; or type a selector above and press Enter.</p>
       </div>
 
       <section class="inspector" id="inspector" aria-label="Selected element actions" hidden>

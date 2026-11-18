@@ -46,6 +46,15 @@ node tools/report.js
 
 The simulator imports the same FNV-1a module used by the snippet, generates visitor ids, buckets them, rolls conversions with a seeded PRNG, batches real events to the API, and prints a summary. The committed log is `data/events.json`; the committed run output is `results/simulation-log.txt`.
 
+For a clean rebuild:
+
+```bash
+npm run reset   # seeds/*.json → data/experiments.json; empties data/events.json
+npm run demo    # reset + start server + both simulations + results report
+```
+
+`npm run demo` starts its own server on port 4000, so stop `npm start` first. Override with `PORT=4010 npm run demo`. `npm run reset` touches only `data/`; run `node tools/report.js` (with the server up) if you want `results/` to match a reset event log again.
+
 ### Tests
 
 ```bash
@@ -53,6 +62,8 @@ npm test          # node:test unit suite
 npx playwright install chromium firefox webkit
 npm run test:e2e  # 5 projects, 40 tests
 ```
+
+Troubleshooting flicker, selector drift, and sample-size questions: `docs/troubleshooting.md`.
 
 ---
 
@@ -108,6 +119,7 @@ The inline object is a minimal config: variant changes and goals only. If `windo
 | `shared/bucketing.js` | Canonical FNV-1a bucketing and weighted variant selection, imported by the simulator and mirrored by the snippet. |
 | `tools/simulate.js` | Seeded traffic simulator that drives the real bucketing code and POSTs real events. |
 | `tools/report.js` | Fetches every `/api/results/:id` and writes `results/results.md` + `results/results.json`. |
+| `tools/reset.js`, `tools/demo.js` | Restore data from seeds and run the full reset → server → simulate → report loop. |
 | `tests/unit/` | `node:test` suites for bucketing, selector generation, stats, schema, and dedupe. |
 | `tests/e2e/` | Playwright specs, fixtures, anti-flicker probe, and the custom matrix reporter. |
 | `playwright.config.js` | chromium, firefox, webkit, Mobile Safari (iPhone 13), and Pixel 7 projects; boots the server with isolated test data. |
@@ -121,7 +133,7 @@ The inline object is a minimal config: variant changes and goals only. If `windo
 
 The snippet is parser-blocking in `<head>` and its first action injects `html { visibility: hidden !important }`. It makes the variant decision locally, waits for the initial DOM to exist, applies text/HTML/class/move/attribute changes and injects style/hide rules into a scoped `<style>` tag, then removes the guard inside a `requestAnimationFrame`. A 1000 ms safety timer always reveals the page if config loading or mutation throws, and a MutationObserver retries missing targets for a bounded 2000 ms window.
 
-The measured reveal delay (from snippet execution to guard removal) across 25 navigations was **min 6.0 ms, median 12.2 ms, max 388.0 ms**. The probe never observed the control headline while visible, and the body computed `visibility: hidden` at the `interactive` readyState on every run. Details: `results/browser-matrix.md`.
+The measured reveal delay (from snippet execution to guard removal) across 25 navigations was **min 5.7 ms, median 10.0 ms, max 184.0 ms**. The probe never observed the control headline while visible, and the body computed `visibility: hidden` at the `interactive` readyState on every run. Details: `results/browser-matrix.md`.
 
 ### Deterministic FNV-1a bucketing, with no server call
 
@@ -202,13 +214,13 @@ Each project ran 8 tests; the anti-flicker test alone performs 5 forced-variant 
 
 | Project | Browser | Viewport | Tests passed | Status | Reveal min | median | max |
 | --- | --- | --- | ---: | --- | ---: | ---: | ---: |
-| chromium | chromium | 1280×720 desktop | 8/8 | PASS | 12.2 ms | 17.4 ms | 91.7 ms |
-| firefox | firefox | 1280×720 desktop | 8/8 | PASS | 15.0 ms | 25.0 ms | 388.0 ms |
-| webkit | webkit | 1280×720 desktop | 8/8 | PASS | 7.0 ms | 9.0 ms | 109.0 ms |
-| Mobile Safari | webkit | 390×664 mobile | 8/8 | PASS | 9.0 ms | 10.0 ms | 66.0 ms |
-| Pixel 7 | chromium | 412×839 mobile | 8/8 | PASS | 6.0 ms | 9.5 ms | 76.3 ms |
+| chromium | chromium | 1280×720 desktop | 8/8 | PASS | 7.0 ms | 9.5 ms | 66.2 ms |
+| firefox | firefox | 1280×720 desktop | 8/8 | PASS | 6.0 ms | 17.0 ms | 184.0 ms |
+| webkit | webkit | 1280×720 desktop | 8/8 | PASS | 7.0 ms | 11.0 ms | 82.0 ms |
+| Mobile Safari | webkit | 390×664 mobile | 8/8 | PASS | 7.0 ms | 8.0 ms | 79.0 ms |
+| Pixel 7 | chromium | 412×839 mobile | 8/8 | PASS | 5.7 ms | 11.5 ms | 74.2 ms |
 
-Across all **25** measured navigations: **min 6.0 ms, median 12.2 ms, max 388.0 ms**. The control headline was never observed painted, and `document.body` computed `visibility: hidden` at the `interactive` readyState before mutations were applied.
+Across all **25** measured navigations: **min 5.7 ms, median 10.0 ms, max 184.0 ms**. The control headline was never observed painted, and `document.body` computed `visibility: hidden` at the `interactive` readyState before mutations were applied.
 
 ### Test counts
 
@@ -220,8 +232,8 @@ Across all **25** measured navigations: **min 6.0 ms, median 12.2 ms, max 388.0 
 
 Measured from `public/snippet.js`:
 
-- Raw: **24,114 bytes** (23.5 KiB)
-- Gzipped (`gzip -9`): **6,867 bytes** (6.7 KiB)
+- Raw: **25,121 bytes** (24.5 KiB)
+- Gzipped (`gzip -9`): **7,249 bytes** (7.1 KiB)
 
 The size includes the embedded fallback bucketing and the bundled tracker so the install stays two lines.
 

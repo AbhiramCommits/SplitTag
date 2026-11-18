@@ -382,6 +382,17 @@ a { color: var(--accent-dark); }
 }
 
 .form-note { margin: 0; font-size: 0.76rem; color: var(--muted); }
+.form-error {
+  margin: 0;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+.field input[aria-invalid="true"] { border-color: #b91c1c; }
 .form-success {
   margin: 0;
   padding: 0.7rem 0.85rem;
@@ -461,3 +472,5 @@ a { color: var(--accent-dark); }
   html { scroll-behavior: auto; }
   .btn { transition: none; }
 }
+
+[hidden] { display: none !important; }

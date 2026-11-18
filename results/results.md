@@ -1,6 +1,6 @@
 # SplitTag experiment results
 
-Generated: 2026-11-18T23:34:07.333Z
+Generated: 2026-11-18T23:40:49.421Z
 
 These numbers are generated from the committed event log through the live stats engine
 (`GET /api/results/:id`). Regenerate with `node tools/report.js`.

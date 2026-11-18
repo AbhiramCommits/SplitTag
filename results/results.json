@@ -7,7 +7,7 @@
       "targetUrlPattern": "/",
       "trafficAllocation": 1
     },
-    "generatedAt": "2026-11-18T23:34:07.295Z",
+    "generatedAt": "2026-11-18T23:40:49.325Z",
     "variants": [
       {
         "id": "control",
@@ -130,7 +130,7 @@
       "targetUrlPattern": "/",
       "trafficAllocation": 1
     },
-    "generatedAt": "2026-11-18T23:34:07.331Z",
+    "generatedAt": "2026-11-18T23:40:49.417Z",
     "variants": [
       {
         "id": "control",

@@ -1,5 +1,7 @@
 node_modules/
-
-.playwright-data/
 playwright-report/
 test-results/
+.playwright-data/
+.DS_Store
+npm-debug.log*
+coverage/

@@ -283,3 +283,5 @@ code { font-family: var(--mono); font-size: 0.9em; }
   .panel, .decision-card { padding: 0.9rem; }
   .decision-badge { width: 100%; }
 }
+
+[hidden] { display: none !important; }

@@ -599,13 +599,32 @@
   /* Public API                                                          */
   /* ------------------------------------------------------------------ */
 
+  /**
+   * Public API attached to window.SplitTag. Available after the synchronous
+   * snippet body runs, even if config loading failed (in which case the maps
+   * are empty and preview is false).
+   * @namespace SplitTag
+   * @property {boolean} preview - true when ?splittag_force is active; event
+   *   sending is suppressed entirely in this mode.
+   * @property {string} version - snippet version, currently "1.0.0".
+   * @property {object} _debug - diagnostic timings: startedAt, revealedAt,
+   *   changesAppliedAt, revealDelay, revealReason, forced, visitorId,
+   *   experiments.
+   */
   function exposeApi() {
     window.SplitTag = {
-      /** @param {string} expId @returns {string|null} */
+      /**
+       * Get the variant assigned to this visitor for one experiment.
+       * @param {string} expId
+       * @returns {string|null} variant id, or null when not assigned
+       */
       getAssignment: function (expId) {
         return Object.prototype.hasOwnProperty.call(assignments, expId) ? assignments[expId] : null;
       },
-      /** @returns {Record<string, string>} */
+      /**
+       * Snapshot every assignment for this visitor.
+       * @returns {Record<string, string>} experiment id → variant id
+       */
       getAssignments: function () {
         var copy = {};
         Object.keys(assignments).forEach(function (key) { copy[key] = assignments[key]; });
@@ -613,9 +632,11 @@
       },
       /**
        * Record a conversion for a goal belonging to any assigned experiment.
+       * Client-side dedupe means repeat calls for the same visitor/goal are
+       * ignored. This is a no-op in force/preview mode.
        * @param {string} goalId
-       * @param {object} [meta]
-       * @returns {boolean} whether at least one goal matched
+       * @param {object} [meta] optional metadata stored on the event
+       * @returns {boolean} whether at least one goal matched the id
        */
       track: function (goalId, meta) {
         var matched = false;

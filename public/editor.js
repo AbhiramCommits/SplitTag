@@ -75,6 +75,18 @@ function bindStaticControls() {
   $('move-after').addEventListener('click', () => armMove('after'));
 
   frame.addEventListener('load', bindFrame);
+  document.addEventListener('keydown', (event) => {
+    const tag = event.target && event.target.tagName;
+    if (event.key === '/' && !/^(INPUT|TEXTAREA|SELECT)$/.test(tag || '')) {
+      event.preventDefault();
+      selectorInput.focus();
+      selectorInput.select();
+    }
+    if (event.key === 'Escape') {
+      pickMode = null;
+      updateHint('Click any element in the preview to select it, or press / to focus the selector field.');
+    }
+  });
   window.addEventListener('beforeunload', (event) => {
     if (isDirty()) {
       event.preventDefault();
@@ -497,7 +509,7 @@ function reloadPreview() {
   selected = null;
   inspector.hidden = true;
   selectorInput.value = '';
-  updateHint('Click any element in the preview to select it. Enter/Space works when an element is focused.');
+  updateHint('Click any element in the preview to select it. Enter/Space selects a focused element; press / to focus the selector field.');
   frame.src = `/?splittag_editor=1&_=${Date.now()}`;
 }
 

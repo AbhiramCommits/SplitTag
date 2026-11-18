@@ -119,7 +119,8 @@
           </div>
           <button type="submit" class="btn btn-primary btn-block" id="lead-submit">Send My Match List</button>
           <p class="form-note" id="lead-privacy">By continuing you agree to our privacy policy. No phone calls, ever.</p>
-          <p class="form-success" id="lead-success" role="status" hidden>You are on the list. Check your inbox for your matches.</p>
+          <p class="form-error" id="lead-error" role="alert" hidden>Please enter a valid email address.</p>
+          <p class="form-success" id="lead-success" role="status" aria-live="polite" hidden>You are on the list. Check your inbox for your matches.</p>
         </form>
       </div>
     </section>
@@ -175,15 +176,28 @@
     (function () {
       var form = document.getElementById('lead-form');
       var success = document.getElementById('lead-success');
+      var error = document.getElementById('lead-error');
+      var email = document.getElementById('lead-email');
       if (!form) return;
       form.addEventListener('submit', function (event) {
         event.preventDefault();
         if (!form.checkValidity()) {
-          form.querySelector('input[type="email"]').focus();
+          email.setAttribute('aria-invalid', 'true');
+          error.hidden = false;
+          success.hidden = true;
+          email.focus();
           return;
         }
+        email.removeAttribute('aria-invalid');
+        error.hidden = true;
         success.hidden = false;
         form.reset();
+      });
+      email.addEventListener('input', function () {
+        if (form.checkValidity()) {
+          email.removeAttribute('aria-invalid');
+          error.hidden = true;
+        }
       });
     })();
   </script>
