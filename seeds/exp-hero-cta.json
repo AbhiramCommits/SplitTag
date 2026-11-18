@@ -1,0 +1,48 @@
+{
+  "id": "exp-hero-cta",
+  "name": "Hero CTA: urgency vs control",
+  "status": "running",
+  "targetUrlPattern": "/",
+  "trafficAllocation": 1,
+  "variants": [
+    {
+      "id": "control",
+      "name": "Control",
+      "weight": 0.5,
+      "changes": []
+    },
+    {
+      "id": "urgency",
+      "name": "Urgency",
+      "weight": 0.5,
+      "changes": [
+        {
+          "type": "text",
+          "selector": "#hero-headline",
+          "value": "Scholarship deadlines are closing. Claim your match before the semester starts."
+        },
+        {
+          "type": "text",
+          "selector": "#cta-primary",
+          "value": "Get My Scholarship Match Now"
+        },
+        {
+          "type": "style",
+          "selector": "#cta-primary",
+          "props": {
+            "background-color": "#dc2626",
+            "border-color": "#b91c1c"
+          }
+        }
+      ]
+    }
+  ],
+  "goals": [
+    {
+      "id": "cta-click",
+      "name": "Primary CTA click",
+      "type": "click",
+      "selector": "#cta-primary"
+    }
+  ]
+}

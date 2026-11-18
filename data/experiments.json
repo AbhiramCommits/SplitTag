@@ -1,1 +1,95 @@
-[]
+[
+  {
+    "id": "exp-hero-cta",
+    "name": "Hero CTA: urgency vs control",
+    "status": "running",
+    "targetUrlPattern": "/",
+    "trafficAllocation": 1,
+    "variants": [
+      {
+        "id": "control",
+        "name": "Control",
+        "weight": 0.5,
+        "changes": []
+      },
+      {
+        "id": "urgency",
+        "name": "Urgency",
+        "weight": 0.5,
+        "changes": [
+          {
+            "type": "text",
+            "selector": "#hero-headline",
+            "value": "Scholarship deadlines are closing. Claim your match before the semester starts."
+          },
+          {
+            "type": "text",
+            "selector": "#cta-primary",
+            "value": "Get My Scholarship Match Now"
+          },
+          {
+            "type": "style",
+            "selector": "#cta-primary",
+            "props": {
+              "background-color": "#dc2626",
+              "border-color": "#b91c1c"
+            }
+          }
+        ]
+      }
+    ],
+    "goals": [
+      {
+        "id": "cta-click",
+        "name": "Primary CTA click",
+        "type": "click",
+        "selector": "#cta-primary"
+      }
+    ]
+  },
+  {
+    "id": "exp-form-position",
+    "name": "Lead form above benefits",
+    "status": "running",
+    "targetUrlPattern": "/",
+    "trafficAllocation": 1,
+    "variants": [
+      {
+        "id": "control",
+        "name": "Control",
+        "weight": 0.5,
+        "changes": []
+      },
+      {
+        "id": "form-first",
+        "name": "Form first",
+        "weight": 0.5,
+        "changes": [
+          {
+            "type": "move",
+            "selector": "#lead-form-section",
+            "beforeSelector": "#benefits"
+          },
+          {
+            "type": "hide",
+            "selector": "#testimonials"
+          }
+        ]
+      }
+    ],
+    "goals": [
+      {
+        "id": "form-submit",
+        "name": "Lead form submit",
+        "type": "form_submit",
+        "selector": "#lead-form"
+      },
+      {
+        "id": "scroll-75",
+        "name": "Read to 75%",
+        "type": "scroll_depth",
+        "threshold": 75
+      }
+    ]
+  }
+]

@@ -7,9 +7,116 @@
   <link rel="stylesheet" href="/editor.css">
 </head>
 <body>
-  <main>
-    <h1>SplitTag Visual Editor</h1>
-    <p>Editor implemented in step 3.</p>
-  </main>
+  <header class="editor-topbar">
+    <div class="topbar-brand">
+      <a href="/" class="brand">SplitTag</a>
+      <span class="mode-badge">Visual editor</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="save-indicator" id="save-indicator" data-state="saved" role="status" aria-live="polite">All changes saved</span>
+      <button type="button" class="btn" id="json-toggle" aria-expanded="false" aria-controls="json-drawer">JSON</button>
+      <button type="button" class="btn" id="preview-btn">Preview variant</button>
+      <button type="button" class="btn btn-primary" id="save-btn">Save experiment</button>
+    </div>
+  </header>
+
+  <div class="editor-layout">
+    <aside class="sidebar" aria-label="Experiment settings">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Experiments</h2>
+          <button type="button" class="btn btn-small" id="new-experiment">New</button>
+        </div>
+        <ul class="experiment-list" id="experiment-list"></ul>
+      </section>
+
+      <section class="panel" id="settings-panel" aria-live="polite">
+        <p class="muted">Loading experiments…</p>
+      </section>
+    </aside>
+
+    <main class="canvas">
+      <div class="canvas-toolbar">
+        <div class="selection-row">
+          <span class="edit-badge">Edit mode</span>
+          <label class="sr-only" for="selector-input">CSS selector</label>
+          <input id="selector-input" type="text" placeholder="Click an element or type a CSS selector" autocomplete="off" spellcheck="false">
+          <button type="button" class="btn btn-small" id="selector-go">Select</button>
+        </div>
+        <p class="selection-hint" id="selection-hint">Click any element in the preview to select it. Enter/Space works when an element is focused.</p>
+      </div>
+
+      <section class="inspector" id="inspector" aria-label="Selected element actions" hidden>
+        <div class="inspector-head">
+          <div>
+            <span class="inspector-label">Selected element</span>
+            <code id="selected-selector">None</code>
+          </div>
+          <button type="button" class="btn btn-small" id="clear-selection">Clear</button>
+        </div>
+        <div class="inspector-grid">
+          <div class="inspector-block">
+            <h3>Copy</h3>
+            <label for="text-input">Text content</label>
+            <textarea id="text-input" rows="2"></textarea>
+            <button type="button" class="btn btn-small" id="apply-text">Apply text</button>
+            <label for="html-input">HTML content</label>
+            <textarea id="html-input" rows="2"></textarea>
+            <button type="button" class="btn btn-small" id="apply-html">Apply HTML</button>
+          </div>
+
+          <div class="inspector-block">
+            <h3>Style</h3>
+            <label for="style-color">Color</label>
+            <input id="style-color" type="text" placeholder="#14201f">
+            <label for="style-background">Background</label>
+            <input id="style-background" type="text" placeholder="#dc2626">
+            <label for="style-fontsize">Font size</label>
+            <input id="style-fontsize" type="text" placeholder="18px">
+            <label for="style-padding">Padding</label>
+            <input id="style-padding" type="text" placeholder="12px 20px">
+            <button type="button" class="btn btn-small" id="apply-style">Apply styles</button>
+          </div>
+
+          <div class="inspector-block">
+            <h3>Classes &amp; attributes</h3>
+            <label for="class-add">Add classes</label>
+            <input id="class-add" type="text" placeholder="highlight">
+            <label for="class-remove">Remove classes</label>
+            <input id="class-remove" type="text" placeholder="btn-ghost">
+            <button type="button" class="btn btn-small" id="apply-class">Apply classes</button>
+            <button type="button" class="btn btn-small btn-danger" id="hide-element">Hide element</button>
+            <label for="attr-name">Attribute name</label>
+            <input id="attr-name" type="text" placeholder="aria-label">
+            <label for="attr-value">Attribute value</label>
+            <input id="attr-value" type="text">
+            <button type="button" class="btn btn-small" id="apply-attr">Apply attribute</button>
+          </div>
+
+          <div class="inspector-block">
+            <h3>Placement</h3>
+            <p class="muted small">Move the selected element relative to another element.</p>
+            <button type="button" class="btn btn-small" id="move-before">Move before…</button>
+            <button type="button" class="btn btn-small" id="move-after">Move after…</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="canvas-frame">
+        <iframe id="preview-frame" title="Demo landing page preview" src="/?splittag_editor=1"></iframe>
+        <span class="edit-overlay" aria-hidden="true">EDIT MODE</span>
+      </div>
+    </main>
+  </div>
+
+  <div class="json-drawer" id="json-drawer" hidden>
+    <div class="json-head">
+      <h2>Experiment JSON</h2>
+      <button type="button" class="btn btn-small" id="json-close">Close</button>
+    </div>
+    <pre id="json-view" tabindex="0"></pre>
+  </div>
+
+  <script type="module" src="/editor.js"></script>
 </body>
 </html>
