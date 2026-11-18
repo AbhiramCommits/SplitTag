@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FundMySemester matches students with scholarships and low-interest funding in minutes.">
+  <title>FundMySemester — Scholarships that actually fit you</title>
+
+  <!-- SplitTag: inline config keeps the pre-paint decision off the network. -->
+  <script>window.SPLITTAG_CONFIG = /*__SPLITTAG_CONFIG__*/null;</script>
+  <script src="/snippet.js"></script>
+
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/" aria-label="FundMySemester home">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <span>FundMySemester</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#benefits">How it works</a>
+        <a href="#testimonials">Stories</a>
+        <a href="#lead-form-section" class="nav-cta">Get matched</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="hero">
+      <div class="shell hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> 1,200+ scholarships added this month</p>
+          <h1 id="hero-headline">Graduate with a plan, not a pile of loan paperwork.</h1>
+          <p class="hero-subhead" id="hero-subhead">
+            Answer five quick questions and we will match you with scholarships, grants,
+            and low-interest funding you can actually apply for — in under two minutes.
+          </p>
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary" id="cta-primary" data-testid="cta-primary">
+              Check My Eligibility
+            </button>
+            <a class="btn btn-ghost" href="#benefits">See how it works</a>
+          </div>
+          <p class="hero-note" id="hero-note">Free forever for students. No credit check, no spam calls.</p>
+        </div>
+        <aside class="hero-card" aria-label="Match preview">
+          <p class="hero-card-label">YOUR MATCH PREVIEW</p>
+          <p class="hero-card-amount">$14,500</p>
+          <p class="hero-card-copy">in scholarships and grants found for a typical sophomore this week.</p>
+          <ul class="check-list">
+            <li>12 local awards</li>
+            <li>6 national essay contests</li>
+            <li>3 need-based grants</li>
+          </ul>
+          <p class="hero-card-foot">Next deadline: <strong>Nov 30</strong></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="benefits" id="benefits" aria-labelledby="benefits-title">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Why students stay</p>
+          <h2 id="benefits-title">Less searching. More applying.</h2>
+          <p class="section-sub">We do the boring sorting so you can spend your energy on essays that win.</p>
+        </div>
+        <div class="benefit-grid">
+          <article class="benefit-card" id="benefit-card-1" data-testid="benefit-card-1">
+            <div class="benefit-icon" aria-hidden="true">◎</div>
+            <h3>Matched to your major</h3>
+            <p>Filter by field of study, year, GPA band, and state so every listing is one you qualify for.</p>
+          </article>
+          <article class="benefit-card" id="benefit-card-2" data-testid="benefit-card-2">
+            <div class="benefit-icon" aria-hidden="true">↗</div>
+            <h3>Deadline radar</h3>
+            <p>Weekly reminders with a checklist for each application, so nothing closes while you study.</p>
+          </article>
+          <article class="benefit-card" id="benefit-card-3" data-testid="benefit-card-3">
+            <div class="benefit-icon" aria-hidden="true">✓</div>
+            <h3>No-fee lending partners</h3>
+            <p>Compare vetted low-interest options side by side. We never sell your phone number.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="lead-section" id="lead-form-section" aria-labelledby="lead-title">
+      <div class="shell lead-inner">
+        <div class="lead-copy">
+          <p class="eyebrow">Start free</p>
+          <h2 id="lead-title">Get your first match list today.</h2>
+          <p>Tell us where to send it. One email, your five best-fit awards, and a deadline calendar.</p>
+          <ul class="lead-points">
+            <li>No essay required to join</li>
+            <li>Unsubscribe in one click</li>
+            <li>Your data is never sold</li>
+          </ul>
+        </div>
+        <form class="lead-form" id="lead-form" data-testid="lead-form" novalidate>
+          <div class="field">
+            <label for="lead-email">Email address</label>
+            <input type="email" id="lead-email" name="email" placeholder="you@university.edu"
+                   autocomplete="email" required aria-describedby="lead-privacy">
+          </div>
+          <div class="field">
+            <label for="lead-year">Year in school</label>
+            <select id="lead-year" name="year">
+              <option value="freshman">Freshman</option>
+              <option value="sophomore" selected>Sophomore</option>
+              <option value="junior">Junior</option>
+              <option value="senior">Senior</option>
+              <option value="grad">Graduate</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="lead-submit">Send My Match List</button>
+          <p class="form-note" id="lead-privacy">By continuing you agree to our privacy policy. No phone calls, ever.</p>
+          <p class="form-success" id="lead-success" role="status" hidden>You are on the list. Check your inbox for your matches.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Student stories</p>
+          <h2 id="testimonials-title">Small wins add up to a semester paid for.</h2>
+        </div>
+        <div class="testimonial-grid">
+          <figure class="testimonial" id="testimonial-1">
+            <blockquote>“I found three local awards I had never heard of. One paid my entire spring tuition.”</blockquote>
+            <figcaption>Maya R. <span>Junior, Arizona State</span></figcaption>
+          </figure>
+          <figure class="testimonial" id="testimonial-2">
+            <blockquote>“The deadline reminders are the only reason I actually submitted anything.”</blockquote>
+            <figcaption>Devin K. <span>Senior, Ohio State</span></figcaption>
+          </figure>
+          <figure class="testimonial" id="testimonial-3">
+            <blockquote>“Comparing lending partners here saved me about $2,100 over my old loan.”</blockquote>
+            <figcaption>Priya S. <span>Grad student, Georgia Tech</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" aria-labelledby="final-title">
+      <div class="shell final-inner">
+        <h2 id="final-title">Your next semester could cost less.</h2>
+        <p>It takes two minutes to find out.</p>
+        <button type="button" class="btn btn-light" id="cta-secondary">Find My Scholarships</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer">
+    <div class="shell footer-inner">
+      <div>
+        <p class="footer-brand">FundMySemester</p>
+        <p class="footer-copy">A demo marketing site for the SplitTag A/B testing toolkit.</p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="#benefits">How it works</a>
+        <a href="#lead-form-section">Get matched</a>
+        <a href="/results.html">Experiment results</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Demo-only form feedback. The Submit event is still observed by SplitTag.
+    (function () {
+      var form = document.getElementById('lead-form');
+      var success = document.getElementById('lead-success');
+      if (!form) return;
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (!form.checkValidity()) {
+          form.querySelector('input[type="email"]').focus();
+          return;
+        }
+        success.hidden = false;
+        form.reset();
+      });
+    })();
+  </script>
+</body>
+</html>
